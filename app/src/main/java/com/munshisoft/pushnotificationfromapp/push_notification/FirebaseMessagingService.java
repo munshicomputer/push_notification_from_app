@@ -1,4 +1,4 @@
-package com.munshisoft.pushnotificationfromapp;
+package com.munshisoft.pushnotificationfromapp.push_notification;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -14,6 +14,8 @@ import androidx.core.app.NotificationCompat;
 
 
 import com.google.firebase.messaging.RemoteMessage;
+import com.munshisoft.pushnotificationfromapp.MainActivity;
+import com.munshisoft.pushnotificationfromapp.R;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 

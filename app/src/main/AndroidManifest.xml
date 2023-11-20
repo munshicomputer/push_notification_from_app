@@ -26,7 +26,7 @@
         </activity>
 
         <service
-            android:name=".FirebaseMessagingService"
+            android:name=".push_notification.FirebaseMessagingService"
             android:permission="TODO"
             tools:ignore="ExportedService"
             android:exported="true">

@@ -1,4 +1,4 @@
-package com.munshisoft.pushnotificationfromapp;
+package com.munshisoft.pushnotificationfromapp.push_notification;
 
 import static android.content.ContentValues.TAG;
 
@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.munshisoft.pushnotificationfromapp.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +33,7 @@ public class FcmNotificationsSender  {
 
     private RequestQueue requestQueue;
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
-    private final String fcmServerKey ="AAAAq-AuoTc:APA91bF7lMT9ZuvL8jilqQvXLQX6BBE0qI6tOJLjzIMK7Ggizq7g0T5UaJYvy3Ya75jMIKFwe23mNU0Cpmp-mojU_G09SLAOB0JBjPW7RfHU-YYl2Xl1W6NB6IfWB7Ww-GLL77-Xhqz3";
+    private final String fcmServerKey ="SHAMIMMUNSHI_IOSDEVELOPER->AAAAq-AuoTc:APA91bF7lMT9ZuvL8jilqQvXLQX6BBE0qI6tOJLjzIMK7Ggizq7g0T5UaJYvy3Ya75jMIKFwe23mNU0Cpmp-mojU_G09SLAOB0JBjPW7RfHU-YYl2Xl1W6NB6IfWB7Ww-GLL77-Xhqz3";
 
     public FcmNotificationsSender(String userFcmToken, String title, String body, Activity mActivity) {
         this.userFcmToken = userFcmToken;
@@ -49,7 +50,7 @@ public class FcmNotificationsSender  {
             JSONObject notiObject = new JSONObject();
             notiObject.put("title", title);
             notiObject.put("body", body);
-            notiObject.put("icon", R.drawable.ic_launcher_foreground); // TODO: 20/11/23 Need to Change Small Icon. 
+            notiObject.put("icon", R.drawable.ic_launcher_foreground); // TODO: 20/11/23 Need to Change Small Icon.
             mainObj.put("notification", notiObject);
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postUrl, mainObj, response -> {
                 Log.e("Response Form Volley", ""+response.toString());
@@ -67,6 +68,7 @@ public class FcmNotificationsSender  {
             requestQueue.add(request);
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("Error", ""+e.getLocalizedMessage());
         }
     }
 
@@ -76,7 +78,7 @@ public class FcmNotificationsSender  {
             if (!task.isSuccessful()) {
                 msg = "Subscribe failed";
             }
-            Log.d(TAG, msg);
+            Log.e(TAG, msg);
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
             Log.e("Error While subscribe a Topics", ""+e.getLocalizedMessage());
@@ -89,7 +91,7 @@ public class FcmNotificationsSender  {
             if (!task.isSuccessful()) {
                 msg = "Un Subscribe failed";
             }
-            Log.d(TAG, msg);
+            Log.e(TAG, msg);
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
             Log.e("Error While Unsubscribe a Topics", ""+e.getLocalizedMessage());
